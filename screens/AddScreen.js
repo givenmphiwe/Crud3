@@ -16,18 +16,14 @@ export default class AddScreen extends React.Component {
     this.state = {
       Name: "",
       Description: "",
-      Weight: "",
       Contact: "",
-      Location: "",
     };
   }
 
   checkData = () => {
     const { Name } = this.state;
     const { Description } = this.state;
-    const { Weight } = this.state;
     const { Contact } = this.state;
-    const { Location } = this.state;
     //for the navigation
     const { navigation, route } = this.props;
     
@@ -37,14 +33,14 @@ export default class AddScreen extends React.Component {
 
     if (Name == user.displayName) {
       alert(
-        "Please enter the name of the Receiver/the person you are sending the parcel to!"
+        "Please enter Your name"
       );
       return;
     }
 
     if (Contact == user.phoneNumber) {
       alert(
-        "Please enter the phone Number of the Receiver/the person you are sending the parcel to!"
+        "Please enter the phone Number!"
       );
       return;
     }
@@ -52,9 +48,8 @@ export default class AddScreen extends React.Component {
     if (
       Name == "" ||
       Description == "" ||
-      Weight == "" ||
-      Contact == "" ||
-      Location == ""
+      Contact == "" 
+      
     ) {
       Alert.alert("Please fill in all the fields");
     } else {
@@ -65,9 +60,8 @@ export default class AddScreen extends React.Component {
         .update({
           Name,
           Description,
-          Weight,
           Contact,
-          Location,
+          
         })
 
         .then((data) => {
@@ -82,17 +76,17 @@ export default class AddScreen extends React.Component {
   };
 
   render() {
-
+    
     return (
       <View style={styles.container}>
         <View style={styles.Heading}>
-          <Text style={styles.HeadingText}>Order Information </Text>
+          <Text style={styles.HeadingText}>Write Information </Text>
 
           <View style={styles.me}>
             <Text style={styles.Topic}>
-              Easily send packages anywhere in south Africa{" "}
+              Easily  anywhere in south Africa{" "}
             </Text>
-            <Text style={styles.Topic1}>send now with Hambisa</Text>
+            <Text style={styles.Topic1}></Text>
           </View>
 
           <View style={styles.inputView}>
@@ -103,7 +97,7 @@ export default class AddScreen extends React.Component {
                 maxLength={120}
                 onChangeText={(Name) => this.setState({ Name })}
                 style={styles.Pass}
-                placeholder="Name of the Receiver"
+                placeholder="Name"
               />
             </View>
 
@@ -118,31 +112,17 @@ export default class AddScreen extends React.Component {
               />
             </View>
 
-            <View style={styles.input}>
-              <TextInput
-                style={styles.Pass}
-                onChangeText={(Weight) => this.setState({ Weight })}
-                placeholder="Weight in kg"
-                keyboardType="numeric"
-              />
-            </View>
+            
 
             <View style={styles.input}>
               <TextInput
                 style={styles.Pass}
                 onChangeText={(Contact) => this.setState({ Contact })}
-                placeholder="Number of the Receiver"
+                placeholder="Number"
                 keyboardType="numeric"
               />
             </View>
 
-            <View>
-              <TextInput
-                placeholder="Location"
-                onChangeText={(Location) => this.setState({ Location })}
-                style={styles.Pass}
-              />
-            </View>
 
             <View style={styles.Send}>
               <TouchableOpacity onPress={this.checkData}>

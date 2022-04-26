@@ -19,7 +19,7 @@ export default class Landing extends Component {
     this.state = {
       list: [],
     };
-  }   
+  }
 
   componentDidMount() {
     firebase
@@ -30,9 +30,9 @@ export default class Landing extends Component {
         snapshot.forEach((child) => {
           li.push({
             key: child.key,
-            BetName: child.val().BetName,
-            Number: child.val().Number,
-            Time: child.val().Time,
+            Name: child.val().BetName,
+            Contact: child.val().Contact,
+            Description: child.val().Description,
           });
         });
         this.setState({ list: li });
@@ -54,15 +54,20 @@ export default class Landing extends Component {
   };
 
   render() {
-    //you made me struggle to navigate to other screen
     const user = firebase.auth().currentUser;
 
     return (
       <SafeAreaView style={styles.container}>
         <View style={styles.Heading}>
-          <Text style={styles.HeadingText}>Winning Number Results</Text>
+          <Text style={styles.HeadingText}>Welcome</Text>
 
-          <Text style={{fontWeight: "bold",fontSize: 19}}>Today's results</Text>
+          <TouchableOpacity onPress={async () => {
+                      navigation.navigate("AddScreen") }}>
+          <Text style={{fontWeight: "bold",fontSize: 19}}>
+            Add Information
+          </Text>
+          </TouchableOpacity>
+
 
           <View style={styles.inputView}></View>
         </View>
@@ -73,20 +78,19 @@ export default class Landing extends Component {
             alignSelf: "center",
             justifyConten: "center",
             marginTop: 20,
-          }}>
-
+          }}
+        >
           <FlatList
             style={{ width: "100%" }}
             data={this.state.list}
             keyExtractor={(item) => item.key}
             ItemSeparatorComponent={this.itemSeparator}
             renderItem={({ item }) => {
-
-
               return (
                 <View>
                   <View style={styles.info}>
                     <View style={{}}>
+                    <TouchableOpacity onPress={async () => {navigation.navigate("UpdateScreen",{Name: item.Name})}}>
                       <View
                         style={{
                           marginLeft: 24,
@@ -100,9 +104,9 @@ export default class Landing extends Component {
                           size={23}
                           color="green"
                         />
-                        <Text style={{ marginLeft: 2}}>Winning number:</Text>
+                        <Text style={{ marginLeft: 2 }}>Winning number:</Text>
                         <Text style={{ marginLeft: 10, marginTop: 0 }}>
-                          {item.Number}
+                          {item.Name}
                         </Text>
                       </View>
 
@@ -115,7 +119,7 @@ export default class Landing extends Component {
                         }}
                       >
                         <Text style={{ marginLeft: 20, marginTop: 15 }}>
-                          {item.BetName}
+                          {item.Contact}
                         </Text>
                       </View>
 
@@ -129,9 +133,10 @@ export default class Landing extends Component {
                         <Entypo name="time-slot" size={24} color="black" />
 
                         <Text style={{ marginLeft: 20, marginTop: 0 }}>
-                          {item.Time}
+                          {item.Description}
                         </Text>
                       </View>
+                      </TouchableOpacity>
                     </View>
                   </View>
                 </View>
