@@ -56,7 +56,7 @@ export default class AddScreen extends React.Component {
       
       firebase
         .database()
-        .ref("Notifications/" + this.state.Name)
+        .ref("Results/" + this.state.Name)
         .update({
           Name,
           Description,

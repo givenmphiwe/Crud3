@@ -30,7 +30,7 @@ export default class Landing extends Component {
         snapshot.forEach((child) => {
           li.push({
             key: child.key,
-            Name: child.val().BetName,
+            Name: child.val().Name,
             Contact: child.val().Contact,
             Description: child.val().Description,
           });
@@ -128,8 +128,8 @@ export default class Landing extends Component {
                           marginLeft: 24,
                           flexDirection: "row",
                           marginTop: 5,
-                        }}
-                      >
+                        }}>
+                          
                         <Entypo name="time-slot" size={24} color="black" />
 
                         <Text style={{ marginLeft: 20, marginTop: 0 }}>
