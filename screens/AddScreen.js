@@ -10,7 +10,7 @@ import {
 } from "react-native";
 import firebase from "../firebase/fire";
 
-export default class UpdateScreen extends React.Component {
+export default class AddScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -82,7 +82,7 @@ export default class UpdateScreen extends React.Component {
   };
 
   render() {
-    
+
     return (
       <View style={styles.container}>
         <View style={styles.Heading}>
